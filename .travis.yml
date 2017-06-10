@@ -1,0 +1,13 @@
+sudo: false
+language: ruby
+rvm:
+  - 2.1
+  - 2.2
+  - 2.3
+  - 2.4
+  - ruby-head
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+before_install: gem install bundler -v 1.15.1
+script: bin/rspec
