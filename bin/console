@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'dry/struct/setters'
+require 'pry'
+
+D   = Dry
+DS  = Dry::Struct
+DSS = Dry::Struct::Setters
+
+Pry.start
