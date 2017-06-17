@@ -28,7 +28,6 @@ module Dry
 
       def self.define_setter_for(struct:, attribute:, type:)
         setter = "#{attribute}=".to_sym
-        type ||= struct.schema[attribute]
 
         struct.class_eval do
           unless instance_methods.include?(setter)
