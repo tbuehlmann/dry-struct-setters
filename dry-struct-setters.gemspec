@@ -5,6 +5,7 @@ Gem::Specification.new do |spec|
   spec.version       = Dry::Struct::Setters::VERSION
   spec.authors       = ['Tobias Bühlmann']
   spec.email         = ['tobias@xn--bhlmann-n2a.de']
+  spec.licenses      = ['MIT']
 
   spec.summary       = 'Setter methods for Dry::Struct subclasses'
   spec.description   = 'This gem adds the ability to add setter methods to otherwise setter-method-less Dry::Struct subclasses.'
