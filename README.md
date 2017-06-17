@@ -6,6 +6,72 @@ Dry::Struct::Setters is an extension to the [Dry::Struct](https://github.com/dry
 
 ## Usage
 
+By including the Dry::Struct::Setters module into your Dry::Struct subclass every defined attribute will get a corresponding setter method:
+
+```ruby
+module Types
+  include Dry::Types.module
+end
+
+class Project < Dry::Struct
+  include Dry::Struct::Setters
+
+  attribute :name, Types::String
+end
+
+project = Project.new(name: 'some-project')
+project.name = 'some-project-new'
+
+project.name # => 'some-project-new'
+```
+
+### Mass Assignment
+
+Including the Dry::Struct::Setters module into you Dry::Struct subclass will only define setter methods, mass assigning attributes won't work with this. If you want to be able to mass assign attributes, just include the Dry::Struct::Setters::MassAssignment module, which will provide an assign_attributes method:
+
+```ruby
+module Types
+  include Dry::Types.module
+end
+
+class Project < Dry::Struct
+  include Dry::Struct::Setters
+  include Dry::Struct::Setters::MassAssignment
+
+  attribute :name, Types::String
+  attribute :description, Types::String
+end
+
+project = Project.new(name: 'some-project', description: 'some-description')
+
+project.assign_attributes(name: 'some-project-new', description: 'some-description-new')
+
+project.name # => 'some-project-new'
+project.description # => 'some-description-new'
+```
+
+### Convenience Class
+
+Instead of including modules you can also just use the Dry::Struct::WithSetters class which inherits from Dry::Struct and includes both modules. Note that you'll need to explicitly require it:
+
+```ruby
+require 'dry/struct/with_setters'
+
+module Types
+  include Dry::Types.module
+end
+
+class Project < Dry::Struct::WithSetters
+  attribute :name, Types::String
+end
+```
+
+Hint: You can also require directly via your Gemfile:
+
+```ruby
+gem 'dry-struct-setters', require: 'dry/struct/with_setters'
+```
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -21,7 +87,6 @@ And then execute:
 Or install it yourself as:
 
     $ gem install dry-struct-setters
-
 
 ## Development
 
