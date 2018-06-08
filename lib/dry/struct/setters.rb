@@ -32,7 +32,7 @@ module Dry
         struct.class_eval do
           unless instance_methods.include?(setter)
             define_method(setter) do |value|
-              instance_variable_set("@#{attribute}", type.call(value))
+              @attributes[attribute] = type.call(value)
             end
 
             setter
