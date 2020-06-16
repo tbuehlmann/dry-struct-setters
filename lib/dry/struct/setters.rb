@@ -11,8 +11,8 @@ module Dry
       def self.included(struct)
         struct.extend(ClassMethods)
 
-        struct.schema.each do |attribute, type|
-          Dry::Struct::Setters.define_setter_for(struct: struct, attribute: attribute, type: type)
+        struct.schema.each do |key|
+          Dry::Struct::Setters.define_setter_for(struct: struct, attribute: key.name, type: key.type)
         end
       end
 
