@@ -42,7 +42,7 @@ module Dry
       end
 
       def self.remove_trailing_question_mark(attribute)
-        attribute = attribute.to_s.chomp "?"
+        attribute = attribute.to_s.chomp('?')
         return attribute.to_sym
       end
     end
