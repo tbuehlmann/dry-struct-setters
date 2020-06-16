@@ -43,7 +43,7 @@ module Dry
 
       def self.remove_trailing_question_mark(attribute)
         #  See https://github.com/tbuehlmann/dry-struct-setters/issues/2
-        return attribute.to_s.chomp('?').to_sym
+        attribute.to_s.chomp('?').to_sym
       end
     end
   end
