@@ -27,7 +27,7 @@ module Dry
       end
 
       def self.define_setter_for(struct:, attribute:, type:)
-        attribute = Dry::Struct::Setters.remove_trailling_question_mark(attribute)
+        attribute = remove_trailling_question_mark(attribute)
         setter = "#{attribute}=".to_sym
 
         struct.class_eval do
