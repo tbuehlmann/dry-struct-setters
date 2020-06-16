@@ -27,6 +27,7 @@ module Dry
       end
 
       def self.define_setter_for(struct:, attribute:, type:)
+        attribute = remove_trailing_question_mark(attribute)
         setter = "#{attribute}=".to_sym
 
         struct.class_eval do
@@ -38,6 +39,11 @@ module Dry
             setter
           end
         end
+      end
+
+      def self.remove_trailing_question_mark(attribute)
+        #  See https://github.com/tbuehlmann/dry-struct-setters/issues/2
+        attribute.to_s.chomp('?').to_sym
       end
     end
   end

@@ -6,6 +6,7 @@ RSpec.describe Dry::Struct::Setters do
       attribute :before, Dry::Struct::Setters::Types::String
       include Dry::Struct::Setters
       attribute :after, Dry::Struct::Setters::Types::String
+      attribute? :omittable, Dry::Struct::Setters::Types::String.optional
     end
   end
 
@@ -18,6 +19,10 @@ RSpec.describe Dry::Struct::Setters do
 
     it 'dynamically defines setters for attributes defined after the inclusion' do
       expect { subject.after = 'new-after' }.to change(subject, :after).from('after').to('new-after')
+    end
+
+    it 'defines setters for omittable attributes' do
+      expect { subject.omittable = 'newly-included' }.to change(subject, :omittable).from(nil).to('newly-included')
     end
   end
 end
