@@ -21,7 +21,7 @@ RSpec.describe Dry::Struct::Setters do
       expect { subject.after = 'new-after' }.to change(subject, :after).from('after').to('new-after')
     end
 
-    it 'defines setters for imittable attributes' do
+    it 'defines setters for omittable attributes' do
       expect { subject.omittable = 'newly-included' }.to change(subject, :omittable).from(nil).to('newly-included')
     end
   end
