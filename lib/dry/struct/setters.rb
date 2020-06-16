@@ -27,7 +27,7 @@ module Dry
       end
 
       def self.define_setter_for(struct:, attribute:, type:)
-        attribute = remove_trailling_question_mark(attribute)
+        attribute = remove_trailing_question_mark(attribute)
         setter = "#{attribute}=".to_sym
 
         struct.class_eval do
@@ -41,7 +41,7 @@ module Dry
         end
       end
 
-      def self.remove_trailling_question_mark(attribute)
+      def self.remove_trailing_question_mark(attribute)
         return if attribute.class != Symbol
         attribute = attribute.to_s.chomp "?"
         return attribute.to_sym
