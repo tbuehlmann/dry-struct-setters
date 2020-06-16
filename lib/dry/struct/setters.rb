@@ -42,7 +42,6 @@ module Dry
       end
 
       def self.remove_trailing_question_mark(attribute)
-        return if attribute.class != Symbol
         attribute = attribute.to_s.chomp "?"
         return attribute.to_sym
       end
