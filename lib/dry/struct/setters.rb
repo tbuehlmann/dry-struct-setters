@@ -14,6 +14,14 @@ module Dry
         struct.schema.each do |key|
           Dry::Struct::Setters.define_setter_for(struct: struct, attribute: key.name, type: key.type)
         end
+
+        def []=(key, value)
+          if self.class.schema.key?(key)
+            public_send("#{key}=", value)
+          else
+            raise Dry::Struct::MissingAttributeError, key
+          end
+        end
       end
 
       module ClassMethods

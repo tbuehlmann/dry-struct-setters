@@ -14,5 +14,5 @@ RSpec.configure do |config|
 end
 
 module Dry::Struct::Setters::Types
-  include Dry::Types.module
+  include Dry.Types
 end

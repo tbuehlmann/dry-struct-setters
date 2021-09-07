@@ -24,5 +24,10 @@ RSpec.describe Dry::Struct::Setters do
     it 'defines setters for omittable attributes' do
       expect { subject.omittable = 'newly-included' }.to change(subject, :omittable).from(nil).to('newly-included')
     end
+
+    it 'defines []= setters' do
+      expect { subject[:before] = 'new-before' }.to change(subject, :before).from('before').to('new-before')
+      expect { subject[:invalid] = 'invalid' }.to raise_error(Dry::Struct::MissingAttributeError, 'Missing attribute: :invalid')
+    end
   end
 end
